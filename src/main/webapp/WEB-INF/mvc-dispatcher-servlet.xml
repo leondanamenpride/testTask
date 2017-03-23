@@ -53,5 +53,5 @@
         </bean>
         <context:component-scan base-package="web.dvd"/>
 
-        <tx:annotation-driven transaction-manager="transactionManager"/>
+        <tx:annotation-driven/>
 </beans>
