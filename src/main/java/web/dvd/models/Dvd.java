@@ -1,4 +1,4 @@
-package models;
+package web.dvd.models;
 
 import javax.persistence.*;
 

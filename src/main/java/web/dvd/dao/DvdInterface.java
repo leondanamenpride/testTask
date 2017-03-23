@@ -1,10 +1,10 @@
-package service;
+package web.dvd.dao;
 
-import models.Dvd;
+import web.dvd.models.Dvd;
 
 import java.util.List;
 
-public interface DvdService {
+interface DvdInterface {
     public void addDvd(Dvd dvd);
     public void removeDvd(int id);
     public Dvd getByid(int id);
