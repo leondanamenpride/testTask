@@ -12,51 +12,5 @@
       <Visible>1</Visible>
     </schema>
     <schema id="5" parent="2" name="SYSTEM_LOBS"/>
-    <table id="6" parent="4" name="DVD">
-      <Comment>dvd&apos;s table</Comment>
-    </table>
-    <table id="7" parent="4" name="USERS"/>
-    <column id="8" parent="6" name="ID">
-      <Position>1</Position>
-      <DataType>INTEGER(32)|4</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-    </column>
-    <column id="9" parent="6" name="BUSY">
-      <Position>2</Position>
-      <DataType>BOOLEAN(0)|16</DataType>
-    </column>
-    <column id="10" parent="6" name="NAME">
-      <Position>3</Position>
-      <DataType>VARCHAR(20)|12</DataType>
-    </column>
-    <column id="11" parent="6" name="AUTOR">
-      <Position>4</Position>
-      <DataType>VARCHAR(20)|12</DataType>
-    </column>
-    <key id="12" parent="6" name="SYS_PK_10112">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>ID</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="13" parent="7" name="ID">
-      <Position>1</Position>
-      <DataType>INTEGER(32)|4</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-    </column>
-    <column id="14" parent="7" name="NAME">
-      <Position>2</Position>
-      <DataType>VARCHAR(20)|12</DataType>
-    </column>
-    <column id="15" parent="7" name="how many">
-      <Position>3</Position>
-      <DataType>INTEGER(32)|4</DataType>
-    </column>
-    <key id="16" parent="7" name="SYS_PK_10134">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>ID</ColNames>
-      <Primary>1</Primary>
-    </key>
   </database-model>
 </dataSource>
