@@ -11,29 +11,39 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx.xsd
        http://www.springframework.org/schema/mvc
-       http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/cache
+       http://www.springframework.org/schema/cache/spring-cache.xsd">
 
-       <context:component-scan base-package="src.main.java"/>
+       <context:component-scan base-package="dvd"/>
 
+
+        <!--view resolver-->
        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
            <property name="prefix" value="/WEB-INF/pages"/>
            <property name="suffix" value=".jsp"/>
        </bean>
 
-        <!--database info-->
-        <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-            <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
-            <property name="url" value="jdbc:hsqldb//localhost:3000/DVD"/>
-            <property name="username" value="admin"/>
-            <property name="password" value="admin"/>
+        <!--hsqldb -->
+        <context:property-placeholder location="classpath:util.properties"/>
+
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <property name="driverClassName" value="${jdbc.hsqldb.driverClass}"/>
+            <property name="url" value="${jdbc.hsqldb.ur}"/>
+            <property name="username" value="${jdbc.hsqldb.username}"/>
+            <property name="password" value="${jdvc.hsqldb.password}"/>
         </bean>
 
+        <jdbc:initialize-database data-source="dataSource">
+            <jdbc:script location="classpath:dbschema.sql"/>
+            <jdbc:script location="classpath:test-data.sql"/>
+        </jdbc:initialize-database>
         <!--hibernate -->
         <bean id="hibernate5AnnotatedSessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
             <property name="dataSource" ref="dataSource"/>
             <property name="annotatedClasses">
                 <list>
-                    <value>java.web.dvd.models.Dvd</value>
+                    <value>java.models.Dvd</value>
                 </list>
             </property>
             <property name="hibernateProperties">
@@ -45,13 +55,13 @@
         </bean>
 
         <!--dvd DAO -->
-        <bean id="dvdInterface" class="web.dvd.dao.DvdImplement">
+        <bean id="dvdInterface" class="dao.DvdImplement">
             <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
         </bean>
-        <bean id="dvdService" class="web.dvd.service.DvdServiceImplementation">
+        <bean id="dvdService" class="service.DvdServiceImplementation">
       <property name="dvdInterface" ref="dvdInterface"/>
         </bean>
-        <context:component-scan base-package="web.dvd"/>
+        <context:component-scan base-package="dvd"/>
 
-        <tx:annotation-driven/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>
