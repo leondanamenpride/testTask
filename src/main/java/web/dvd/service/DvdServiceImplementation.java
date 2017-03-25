@@ -28,6 +28,12 @@ public class DvdServiceImplementation implements DvdService {
 
     @Override
     @Transactional
+    public void updateDvd(Dvd dvd){
+        this.dvdService.updateDvd(dvd);
+    }
+
+    @Override
+    @Transactional
     public Dvd getByid(int id) {
         return this.dvdService.getByid(id);
     }

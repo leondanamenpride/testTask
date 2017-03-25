@@ -39,6 +39,13 @@ public class DvdImplement implements DvdInterface {
         logger.info("DVD with id: " + id + "successfully remove");
 
     }
+    @Override
+    public void updateDvd(Dvd dvd){
+        Session session = this.sessionFactory.getCurrentSession();
+        session.update(dvd);
+
+        logger.info("DVD successfully add. more info: " + dvd);
+    }
 
     @Override
     public Dvd getByid(int id) {

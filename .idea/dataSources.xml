@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+  <component name="DataSourceManagerImpl" format="xml" hash="1793857804">
     <data-source source="LOCAL" name="dvdDB" uuid="eaa10535-002c-4107-9b1a-2df34d8efffe">
-      <driver-ref>hsqldb.local</driver-ref>
+      <driver-ref>hsqldb.embedded</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.hsqldb.jdbc.JDBCDriver</jdbc-driver>
       <jdbc-url>jdbc:hsqldb:file:dvdDB</jdbc-url>
+      <libraries />
     </data-source>
   </component>
 </project>
