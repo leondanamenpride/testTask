@@ -20,7 +20,7 @@
           <element id="library" level="project" name="Maven: org.springframework.ws:spring-xml:2.4.0.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-oxm:4.2.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-orm:4.3.7.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:4.3.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:4.3.3.RELEASE" />
           <element id="library" level="project" name="Maven: org.hsqldb:hsqldb:2.0.0" />
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-core:5.1.0.Final" />
           <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.3.0.Final" />

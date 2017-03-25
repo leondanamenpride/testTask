@@ -4,6 +4,8 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/cache"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
@@ -13,37 +15,41 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd
        http://www.springframework.org/schema/cache
-       http://www.springframework.org/schema/cache/spring-cache.xsd">
+       http://www.springframework.org/schema/cache/spring-cache.xsd
+       http://www.springframework.org/schema/jdbc
+       http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
        <context:component-scan base-package="dvd"/>
 
 
+
         <!--view resolver-->
        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+           <property name="order" value="1" />
            <property name="prefix" value="/WEB-INF/pages"/>
            <property name="suffix" value=".jsp"/>
        </bean>
 
         <!--hsqldb -->
-        <context:property-placeholder location="classpath:util.properties"/>
+    <context:property-placeholder location="classpath:util.properties"/>
 
-        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-            <property name="driverClassName" value="${jdbc.hsqldb.driverClass}"/>
-            <property name="url" value="${jdbc.hsqldb.ur}"/>
-            <property name="username" value="${jdbc.hsqldb.username}"/>
-            <property name="password" value="${jdvc.hsqldb.password}"/>
-        </bean>
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.hsqldb.driverClass}"/>
+        <property name="url" value="${jdbc.hsqldb.url}"/>
+        <property name="username" value="${jdbc.hsqldb.username}"/>
+        <property name="password" value="${jdbc.hsqldb.password}"/>
+    </bean>
 
-        <jdbc:initialize-database data-source="dataSource">
-            <jdbc:script location="classpath:dbschema.sql"/>
-            <jdbc:script location="classpath:test-data.sql"/>
-        </jdbc:initialize-database>
+    <jdbc:initialize-database data-source="dataSource">
+        <jdbc:script location="classpath:dbschema.sql"/>
+        <jdbc:script location="classpath:initialDB.sql"/>
+    </jdbc:initialize-database>
         <!--hibernate -->
         <bean id="hibernate5AnnotatedSessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
             <property name="dataSource" ref="dataSource"/>
             <property name="annotatedClasses">
                 <list>
-                    <value>java.models.Dvd</value>
+                    <value>dvd.models.Dvd</value>
                 </list>
             </property>
             <property name="hibernateProperties">
@@ -55,13 +61,22 @@
         </bean>
 
         <!--dvd DAO -->
-        <bean id="dvdInterface" class="dao.DvdImplement">
+        <bean id="dvdInterface" class="dvd.dao.DvdImplement">
             <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
         </bean>
-        <bean id="dvdService" class="service.DvdServiceImplementation">
-      <property name="dvdInterface" ref="dvdInterface"/>
+        <bean id="dvdService" class="dvd.service.DvdServiceImplementation">
+            <property name="dvdInterface" ref="dvdInterface"/>
         </bean>
         <context:component-scan base-package="dvd"/>
 
-    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"/>
+    </bean>
+
+
+    <mvc:default-servlet-handler/>
+    <mvc:annotation-driven/>
+
 </beans>
