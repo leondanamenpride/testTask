@@ -48,7 +48,8 @@
             <property name="dataSource" ref="dataSource"/>
             <property name="annotatedClasses">
                 <list>
-                    <value>dvd.models.Dvd</value>
+                    <value>dvd.model.Dvd</value>
+                    <value>user.model.User</value>
                 </list>
             </property>
             <property name="hibernateProperties">

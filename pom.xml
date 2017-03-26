@@ -66,14 +66,19 @@
             <version>4.3.3.RELEASE</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-security</artifactId>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
             <version>4.0.2.RELEASE</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>4.0.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
-            <version>1.8.2.RELEASE</version>
+            <version>1.7.1.RELEASE</version>
         </dependency>
 
         <!--hsqldb driver-->
@@ -91,9 +96,9 @@
             <version>5.1.0.Final</version>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-valdator</artifactId>
-            <version>4.3.1.FINAl</version>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.0.0.Alpha1</version>
         </dependency>
 
         <!--pool connection to db-->
