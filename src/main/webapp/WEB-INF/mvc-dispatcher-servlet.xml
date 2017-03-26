@@ -42,7 +42,6 @@
 
     <jdbc:initialize-database data-source="dataSource">
         <jdbc:script location="classpath:dbschema.sql"/>
-        <jdbc:script location="classpath:initialDB.sql"/>
     </jdbc:initialize-database>
         <!--hibernate -->
         <bean id="hibernate5AnnotatedSessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
@@ -78,5 +77,6 @@
 
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven/>
-
+    <mvc:resources mapping="/static/*" location="/static/" />
+    <mvc:view-controller path="/index.html" view-name="/index"/>
 </beans>
